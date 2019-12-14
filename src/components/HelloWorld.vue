@@ -1,44 +1,92 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form-item label="給料形式" prop="region">
+      <el-col :span="5">
+        <el-select v-model="ruleForm.format" placeholder="給料形式を選びください">
+            <el-option label="年収" value="year"></el-option>
+            <el-option label="月収" value="month"></el-option>
+            <el-option label="日給" value="day"></el-option>
+            <el-option label="時給" value="hour"></el-option>
+        </el-select>
+      </el-col>
+    </el-form-item>
+
+    <el-form-item label="単位" prop="region" labelPosition="top">
+      <el-col :span="5">
+        <el-select v-model="ruleForm.unit" placeholder="単位をを選びください">
+          <el-option label="円" value="yen"></el-option>
+          <el-option label="万円" value="thousandyen"></el-option>
+        </el-select>
+      </el-col>
+    </el-form-item>
+
+    <el-form-item label="給料">
+      <el-input v-model="ruleForm.salary"></el-input>
+    </el-form-item>
+    <el-form-item label="片道通勤時間">
+      <el-input v-model="ruleForm.time"></el-input>
+    </el-form-item>
+
+    <el-form-item label="休日">
+        <el-radio-group v-model="ruleForm.resource" size="medium">
+          <el-radio border label="年間休日"></el-radio>
+          <el-radio border label="週休"></el-radio>
+        </el-radio-group>
+        <el-input v-model="ruleForm.holiday"></el-input>
+    </el-form-item>
+
+  <el-form-item>
+    <el-button type="primary" @click="submitForm">計算する</el-button>
+    <el-button @click="resetForm('ruleForm')">リセット</el-button>
+  </el-form-item>
+</el-form>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component({
+  components:{}
+})
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+  @Provide() ruleForm:{
+    format: string;
+    time:string;
+    salary: string,
+    unit: string,
+    resource: string,
+    holiday: string,
+  }={
+      format: "",
+      time :"",
+      salary: "",
+      unit:"",
+      resource: "",
+      holiday: ""
+  };
+  @Provide() rules:Object={};
+   created(){
+   }
+  submitForm():void {
+    let formData = new FormData();
+    formData.append("format", this.ruleForm.format);
+    formData.append("time", this.ruleForm.time);
+    formData.append("salary", this.ruleForm.salary);
+    formData.append("unit", this.ruleForm.unit);
+    formData.append("resource", this.ruleForm.resource);
+    formData.append("holiday", this.ruleForm.holiday);
+    console.log(this.ruleForm);
+    (this as any).$axios.post("http://127.0.0.1:8000/api/test",formData).then((res:any)=>{
+      console.log(res.data);
+    })
+  }
+  resetForm(ruleForm:any) {
+    (this as any).$refs[ruleForm].resetFields();
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;
