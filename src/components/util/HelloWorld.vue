@@ -24,7 +24,7 @@
         <el-form-item label="給料">
           <el-input v-model="ruleForm.salary"></el-input>
         </el-form-item>
-        <el-form-item label="片道通勤時間">
+        <el-form-item label="片道通勤時間" prop="time">
           <el-input v-model="ruleForm.time"></el-input>
         </el-form-item>
 
@@ -52,32 +52,38 @@ import { Component, Provide, Vue } from 'vue-property-decorator';
 export default class HelloWorld extends Vue {
   @Provide() ruleForm:{
     format: string;
-    time:string;
-    salary: string,
+    time:number;
+    salary: number,
     unit: string,
     resource: string,
-    holiday: string,
+    holiday: number,
   }={
       format: "",
-      time :"",
-      salary: "",
+      time :0,
+      salary: 0,
       unit:"",
       resource: "",
-      holiday: ""
+      holiday: 0
   };
-  @Provide() rules:Object={};
+  @Provide() rules:Object={
+      time:[{ required: true, message: '時間を入力してください'},{type: 'number', message: '数字を分単位で入力してください'}]
+  };
    created(){
    }
   submitForm():void {
-    let formData = new FormData();
-    formData.append("format", this.ruleForm.format);
-    formData.append("time", this.ruleForm.time);
-    formData.append("salary", this.ruleForm.salary);
-    formData.append("unit", this.ruleForm.unit);
-    formData.append("resource", this.ruleForm.resource);
-    formData.append("holiday", this.ruleForm.holiday);
-    console.log(this.ruleForm);
-    (this as any).$axios.post("http://127.0.0.1:8000/api/test",formData).then((res:any)=>{
+    // let formData = new FormData();
+    // formData.append("format", this.ruleForm.format);
+    // formData.append("time", this.ruleForm.time);
+    // formData.append("salary", this.ruleForm.salary);
+    // formData.append("unit", this.ruleForm.unit);
+    // formData.append("resource", this.ruleForm.resource);
+    // formData.append("holiday", this.ruleForm.holiday);
+    // console.log(this.ruleForm);
+      this.ruleForm.time = Number(this.ruleForm.time);
+      this.ruleForm.salary = Number(this.ruleForm.salary);
+      this.ruleForm.holiday = Number(this.ruleForm.holiday);
+     console.log(JSON.stringify(this.ruleForm));
+    (this as any).$axios.post("http://127.0.0.1:8000/api/test",JSON.stringify(this.ruleForm)).then((res:any)=>{
       console.log(res.data);
     })
   }
