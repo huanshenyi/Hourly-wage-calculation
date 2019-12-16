@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <HelloWorld/>
+    <Main/>
   </div>
 </template>
 
@@ -9,11 +9,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header/index.vue';
+import Main from './components/main/index.vue';
 
 @Component({
   components: {
     HelloWorld,
-    Header
+    Header,
+    Main
   },
 })
 export default class App extends Vue {}
