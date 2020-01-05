@@ -3,8 +3,8 @@
        <HelloWorld/>
        <div class="banner-context"></div>
        <div class="banner-image">
-           <div class="banner-item" style="float: left ;color: ActiveBorder">1</div>
-           <div class="banner-item" style="float: right; color: ActiveBorder">2</div>
+           <div class="banner-item" ></div>
+           <div class="banner-item" ></div>
        </div>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default class homeLeft extends Vue {
 }
 </script>
 
-<style scoped lang="css">
+<style lang="scss">
 .home-left{
   float: left;
   width: 625px;
@@ -38,11 +38,13 @@ export default class homeLeft extends Vue {
     margin-top: 30px;
     width: 625px;
     height: 250px;
-    box-sizing: border-box;
-}
-.banner-item{
-   line-height: 250px;
-   width: 310px;
-   background-image: url("https://hbb.afl.rakuten.co.jp/hsb/167c4762.bcf0ae97.15d5f5f0.5c115c53/?me_id=2100001&me_adv_id=1512353&t=pict");
+    .banner-item{
+       display: inline-block;
+       height: 250px;
+       line-height: 250px;
+       width: 312px;
+       background: url("https://hbb.afl.rakuten.co.jp/hsb/167c4762.bcf0ae97.15d5f5f0.5c115c53/?me_id=2100001&me_adv_id=1512353&t=pict") no-repeat center;
+       background-size: contain;
+  }
 }
 </style>

@@ -1,7 +1,13 @@
 <template>
     <div class="nav">
       <div class="nav-item">
-          何か
+          <span>時給計算</span>
+      </div>
+      <div class="nav-item">
+          <span>何か</span>
+      </div>
+      <div class="nav-item">
+          <span>何か</span>
       </div>
     </div>
 </template>
@@ -16,17 +22,17 @@ export default class nav extends Vue{
 }
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
 .nav{
-  width: 960px;
-  height: 100%;
-  padding-right: 90px;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-.nav-item{
-   line-height: 56px;
-   padding: 0 15px;
-   color: #333;
+  display: inline-block;
+  width: 580px;
+  padding-left: 150px;
+    .nav-item{
+       display: inline-block;
+       font-size: 16px;
+       color: #333;
+       line-height: 56px;
+       margin-right: 20px;
+  }
 }
 </style>
