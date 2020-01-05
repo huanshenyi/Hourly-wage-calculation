@@ -22,12 +22,11 @@ export default class homeRight extends Vue {
    float: right;
 }
 .WriterWrapper{
-  padding: 30px 0 10px 0;
-  width: 278px;
-  border-radius: 3px;
+  width: 288px;
   height: 250px;
-  line-height: 300px;
+  line-height: 250px;
   text-align: center;
-  background-image: url("https://hbb.afl.rakuten.co.jp/hsb/1656e6d0.3ccaa4cb.15d5f5f0.5c115c53/?me_id=1&me_adv_id=1553643&t=pict");
+  background: url("https://hbb.afl.rakuten.co.jp/hsb/1656e6d0.3ccaa4cb.15d5f5f0.5c115c53/?me_id=1&me_adv_id=1553643&t=pict") no-repeat center;
+  background-size: contain;
 }
 </style>

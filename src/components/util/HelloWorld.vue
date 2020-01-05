@@ -22,10 +22,10 @@
         </el-form-item>
 
         <el-form-item label="給料">
-          <el-input v-model="ruleForm.salary"></el-input>
+          <el-input v-model="ruleForm.salary" type="number"></el-input>
         </el-form-item>
         <el-form-item label="片道通勤時間" prop="time">
-          <el-input v-model="ruleForm.time"></el-input>
+          <el-input v-model="ruleForm.time" type="number"></el-input>
         </el-form-item>
 
         <el-form-item label="休日">
@@ -33,7 +33,7 @@
               <el-radio border label="年間休日"></el-radio>
               <el-radio border label="週休"></el-radio>
             </el-radio-group>
-            <el-input v-model="ruleForm.holiday"></el-input>
+            <el-input v-model="ruleForm.holiday" type="number"></el-input>
         </el-form-item>
 
       <el-form-item>
