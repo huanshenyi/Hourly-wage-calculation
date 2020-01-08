@@ -50,6 +50,7 @@ export default class nav extends Vue{
            color: #ec6149;
            .children{
                height: 120px;
+               opacity: 1;
            }
        }
        .children{
@@ -61,7 +62,10 @@ export default class nav extends Vue{
            width: 1226px;
            box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
            z-index: 10;
-           height: 120px;
+           height: 0;
+           opacity: 0;
+           overflow: hidden;
+           transition: all 0.5s;
            .product{
                display: inline-block;
                width: 70%;

@@ -22,8 +22,8 @@ export default class homeRight extends Vue {
    float: right;
 }
 .WriterWrapper{
-  width: 288px;
   height: 250px;
+  width: auto;
   line-height: 250px;
   text-align: center;
   background: url("https://hbb.afl.rakuten.co.jp/hsb/1656e6d0.3ccaa4cb.15d5f5f0.5c115c53/?me_id=1&me_adv_id=1553643&t=pict") no-repeat center;
