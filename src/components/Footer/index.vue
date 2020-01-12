@@ -22,5 +22,6 @@ export default class index extends Vue {}
    overflow: hidden;
    margin-top: 10px;
    padding-top: 10px;
+   height: 134px;
 }
 </style>
