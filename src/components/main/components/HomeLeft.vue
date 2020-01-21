@@ -1,7 +1,6 @@
 <template>
     <div class="home-left">
        <HelloWorld/>
-       <div class="banner-context"></div>
        <div class="banner-image">
            <div class="banner-item" ></div>
            <div class="banner-item" ></div>
@@ -28,11 +27,6 @@ export default class homeLeft extends Vue {
   width: 625px;
   margin-left: 15px;
   padding-top: 30px;
-}
-.banner-context{
-    width: 625px;
-    height: 270px;
-    background-color: #42b983;
 }
 .banner-image{
     margin-top: 30px;
